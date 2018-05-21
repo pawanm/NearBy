@@ -11,6 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import demo.tala.venue.contants.Parser;
@@ -63,7 +66,6 @@ public class VenueController {
         requestQueue.add(jsObjRequest);
     }
 
-
     private List<VenueModel> getVenueList(JSONObject response) {
         List<VenueModel> venueList = new ArrayList<>();
         try {
@@ -85,7 +87,27 @@ public class VenueController {
             Logger.log("getVenueList: " + e.getMessage());
         }
         Logger.log("Success: " + venueList.size());
+        sortList(venueList);
         return venueList;
+    }
+
+    private void sortList(List<VenueModel> dataList) {
+        Collections.sort(dataList, new DistanceModel());
+    }
+
+    private class DistanceModel implements Comparator<VenueModel> {
+        @Override
+        public int compare(VenueModel lhs, VenueModel rhs) {
+            Double distance = Double.valueOf(lhs.getDistance());
+            Double distance1 = Double.valueOf(rhs.getDistance());
+            if (distance.compareTo(distance1) < 0) {
+                return -1;
+            } else if (distance.compareTo(distance1) > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
 
     private String getIconUri(JSONArray venueCategories) {
