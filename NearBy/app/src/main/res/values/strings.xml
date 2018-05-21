@@ -1,0 +1,17 @@
+<resources>
+  <string name="app_name">NearBy Venues</string>
+
+  <string name="dialog_search_hint">Location</string>
+  <string name="search_dialog_title">Search Venues</string>
+
+  <string name="dialog_option_cancel">Cancel</string>
+  <string name="dialog_option_confirm">Search</string>
+  <string name="venue_row_distance">Away</string>
+  <string name="venue_row_name_hint">Name</string>
+
+  <string name="venue_search_progress">Retrieving Venues</string>
+  <string name="venue_search_loading_error">Error, please try again.</string>
+  <string name="venue_search_invalid_error">No venue found !!</string>
+
+  <string name="no_internet">No internet !!</string>
+</resources>
