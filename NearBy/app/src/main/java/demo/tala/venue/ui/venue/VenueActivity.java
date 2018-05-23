@@ -17,15 +17,20 @@ public class VenueActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.venue_activity);
+
         VenueFragment venueFragment = new VenueFragment();
         venueFragment.attachOnClick(new IOnSingleClickListener<VenueModel>() {
             @Override
             public void onClick(VenueModel venueModel) {
                 Logger.log("OnClick: " + venueModel.getName());
+                VenueDetailFragment venueDetailFragment = new VenueDetailFragment();
+                venueDetailFragment.setDetails(venueModel);
+                startFragment(venueDetailFragment, FRAGMENT_TAGS.VENUE_DETAIL.name());
             }
         });
+
         startFragment(venueFragment, FRAGMENT_TAGS.VENUE.name());
-        setContentView(R.layout.venue_activity);
     }
 
     private void startFragment(Fragment fragment, String tagName) {
