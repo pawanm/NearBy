@@ -4,16 +4,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
-import demo.tala.venue.util.Logger;
 import demo.tala.venue.R;
-import demo.tala.venue.model.ICallBack;
-import demo.tala.venue.controller.VenueController;
-import demo.tala.venue.model.VenueResponse;
-import demo.tala.venue.util.ProgressDialog;
 
 public class VenueActivity extends AppCompatActivity {
 

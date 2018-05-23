@@ -1,4 +1,4 @@
-package demo.tala.venue.model;
+package demo.tala.venue.core;
 
 /**
  * Created by admin on 18/05/18.

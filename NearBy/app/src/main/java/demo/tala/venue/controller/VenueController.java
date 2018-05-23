@@ -11,13 +11,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import demo.tala.venue.contants.Parser;
-import demo.tala.venue.model.ICallBack;
+import demo.tala.venue.core.ICallBack;
 import demo.tala.venue.model.VenueModel;
 import demo.tala.venue.model.VenueResponse;
 import demo.tala.venue.util.Logger;
