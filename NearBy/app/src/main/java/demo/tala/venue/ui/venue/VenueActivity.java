@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import demo.tala.venue.R;
+import demo.tala.venue.core.IOnSingleClickListener;
+import demo.tala.venue.model.VenueModel;
+import demo.tala.venue.util.Logger;
 
 public class VenueActivity extends AppCompatActivity {
 
@@ -14,7 +17,14 @@ public class VenueActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startFragment(new VenueFragment(), FRAGMENT_TAGS.VENUE.name());
+        VenueFragment venueFragment = new VenueFragment();
+        venueFragment.attachOnClick(new IOnSingleClickListener<VenueModel>() {
+            @Override
+            public void onClick(VenueModel venueModel) {
+                Logger.log("OnClick: " + venueModel.getName());
+            }
+        });
+        startFragment(venueFragment, FRAGMENT_TAGS.VENUE.name());
         setContentView(R.layout.venue_activity);
     }
 

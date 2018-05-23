@@ -48,7 +48,11 @@ public class VenueRecyclerAdapter extends RecyclerView.Adapter<VenueRecyclerAdap
         holder.venueName.setText(selectedVenue.getName());
         holder.venueDistance.setText(selectedVenue.getDistance() + " KM");
     }
-    
+
+
+    public VenueModel getItem(int position) {
+        return venueModels.get(position);
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView venueIcon;
