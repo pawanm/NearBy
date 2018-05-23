@@ -1,4 +1,4 @@
-package demo.tala.venue.ui;
+package demo.tala.venue.ui.venue;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

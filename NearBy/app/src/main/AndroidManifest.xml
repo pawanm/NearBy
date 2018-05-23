@@ -8,7 +8,7 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
     <activity
-        android:name="demo.tala.venue.ui.HomeActivity"
+        android:name="demo.tala.venue.ui.venue.VenueActivity"
         android:configChanges="orientation|screenSize">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
