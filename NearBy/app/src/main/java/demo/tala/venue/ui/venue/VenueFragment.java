@@ -64,7 +64,7 @@ public class VenueFragment extends BaseFragment {
                     Logger.log("Lat: " + location.getLatitude() + ", Long: " + location.getLongitude());
                     getVenueDetails(location.getLatitude(), location.getLongitude());
                 } else {
-                    Logger.log("locatlion object is null");
+                    Logger.log("Location object is null");
                 }
             }
         });
