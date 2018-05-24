@@ -46,21 +46,12 @@ public class LocationController {
                     .addOnCompleteListener(activityContext, new OnCompleteListener<Location>() {
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
-                            Logger.log("onComplete");
-                            //if (task.isSuccessful() && task.getResult() != null) {
+                            Logger.log("onComplete: " + task.isSuccessful());
+                            if (task.isSuccessful() && task.getResult() != null) {
                                 locationCallBack.response(task.getResult());
-                            //}
+                            }
                         }
                     });
-
-
-            /*fusedLocationProviderClient.getLastLocation().addOnSuccessListener(activityContext, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    Logger.log("onSuccess");
-                    locationCallBack.response(location);
-                }
-            });*/
         }
     }
 
