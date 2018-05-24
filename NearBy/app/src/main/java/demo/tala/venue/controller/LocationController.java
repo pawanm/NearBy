@@ -12,6 +12,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import demo.tala.venue.core.ICallBack;
@@ -23,7 +24,6 @@ import demo.tala.venue.util.Logger;
 
 public class LocationController {
     private final Activity activityContext;
-    private LocationRequest locationRequest;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
 
@@ -41,15 +41,26 @@ public class LocationController {
     @SuppressLint("MissingPermission")
     public void getLastLocation(final ICallBack<Location> locationCallBack) {
         if(checkPermissions()) {
+            Logger.log("Permission Available");
             fusedLocationProviderClient.getLastLocation()
                     .addOnCompleteListener(activityContext, new OnCompleteListener<Location>() {
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
-                            if (task.isSuccessful() && task.getResult() != null) {
+                            Logger.log("onComplete");
+                            //if (task.isSuccessful() && task.getResult() != null) {
                                 locationCallBack.response(task.getResult());
-                            }
+                            //}
                         }
                     });
+
+
+            /*fusedLocationProviderClient.getLastLocation().addOnSuccessListener(activityContext, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    Logger.log("onSuccess");
+                    locationCallBack.response(location);
+                }
+            });*/
         }
     }
 
@@ -57,9 +68,9 @@ public class LocationController {
         if (ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Logger.log("Location Permission not available");
+            requestPermissions();
             return false;
         }
-        Logger.log("Location Permission Available !!");
         return true;
     }
 

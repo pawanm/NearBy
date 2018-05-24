@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,22 +51,23 @@ public class VenueFragment extends BaseFragment {
         venuesRecyclerAdapter = new VenueRecyclerAdapter(context);
         recyclerView.setAdapter(venuesRecyclerAdapter);
         getVenueDetails(34.017156, -118.494513);
+        setClickListener(recyclerView);
+        //getCurrentLocationVenues();
+        return view;
+    }
 
-        //TODO: GetLocation
-        if (locationController.checkPermissions() == false) {
-            locationController.requestPermissions();
-        }
-
+    private void getCurrentLocationVenues() {
         locationController.getLastLocation(new ICallBack<Location>() {
             @Override
             public void response(Location location) {
-                getVenueDetails(location.getLatitude(), location.getLongitude());
+                if (location != null) {
+                    Logger.log("Lat: " + location.getLatitude() + ", Long: " + location.getLongitude());
+                    getVenueDetails(location.getLatitude(), location.getLongitude());
+                } else {
+                    Logger.log("locatlion object is null");
+                }
             }
         });
-
-        setClickListener(recyclerView);
-
-        return view;
     }
 
     public void attachOnClick(IOnSingleClickListener clickListener) {
