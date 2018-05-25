@@ -14,7 +14,8 @@
         <ImageView
             android:id="@+id/venue_icon"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:src="@drawable/common_full_open_on_phone"
+            android:layout_height="fill_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:layout_margin="2dp" />
