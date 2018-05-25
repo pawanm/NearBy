@@ -21,7 +21,7 @@ import demo.tala.venue.util.Logger;
 public class LocationController {
     private final Activity activityContext;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
+    public static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
 
     public LocationController(Activity activity) {
         activityContext = activity;
@@ -33,7 +33,6 @@ public class LocationController {
                 && ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Logger.log("Requesting Location Permission");
             requestPermissions();
-            //TODO: invoke location callback on  request permission success
             return;
         }
 

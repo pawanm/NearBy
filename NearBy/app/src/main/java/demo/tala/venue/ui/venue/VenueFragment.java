@@ -90,6 +90,9 @@ public class VenueFragment extends BaseFragment {
         }));
     }
 
+    public void locationPermissionGranted() {
+        getCurrentLocationVenues();
+    }
 
     private void getVenueDetails(Double lat, Double lng) {
         progressDialog.show();
@@ -107,5 +110,6 @@ public class VenueFragment extends BaseFragment {
             }
         });
     }
+
 
 }
