@@ -18,10 +18,6 @@ import com.google.android.gms.tasks.Task;
 import demo.tala.venue.core.ICallBack;
 import demo.tala.venue.util.Logger;
 
-/**
- * Created by admin on 24/05/18.
- */
-
 public class LocationController {
     private final Activity activityContext;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -32,38 +28,27 @@ public class LocationController {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activityContext);
     }
 
-    public void requestPermissions() {
+    public void getLastLocation(final ICallBack<Location> locationCallBack) {
+        if(ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Logger.log("Requesting Location Permission");
+            requestPermissions();
+        }
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(activityContext, new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Logger.log("onComplete: " + task.isSuccessful());
+                if (task.isSuccessful() && task.getResult() != null) {
+                    locationCallBack.response(task.getResult());
+                }
+            }
+        });
+    }
+
+    private void requestPermissions() {
         ActivityCompat.requestPermissions(activityContext,
                 new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                 REQUEST_PERMISSIONS_REQUEST_CODE);
     }
-
-    @SuppressLint("MissingPermission")
-    public void getLastLocation(final ICallBack<Location> locationCallBack) {
-        if(checkPermissions()) {
-            Logger.log("Permission Available");
-            fusedLocationProviderClient.getLastLocation()
-                    .addOnCompleteListener(activityContext, new OnCompleteListener<Location>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Location> task) {
-                            Logger.log("onComplete: " + task.isSuccessful());
-                            if (task.isSuccessful() && task.getResult() != null) {
-                                locationCallBack.response(task.getResult());
-                            }
-                        }
-                    });
-        }
-    }
-
-    public boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Logger.log("Location Permission not available");
-            requestPermissions();
-            return false;
-        }
-        return true;
-    }
-
-
 }

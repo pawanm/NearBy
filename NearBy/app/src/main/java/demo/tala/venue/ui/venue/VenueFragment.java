@@ -52,7 +52,7 @@ public class VenueFragment extends BaseFragment {
         recyclerView.setAdapter(venuesRecyclerAdapter);
         getVenueDetails(34.017156, -118.494513);
         setClickListener(recyclerView);
-        //getCurrentLocationVenues();
+        getCurrentLocationVenues();
         return view;
     }
 
@@ -93,7 +93,7 @@ public class VenueFragment extends BaseFragment {
 
     private void getVenueDetails(Double lat, Double lng) {
         progressDialog.show();
-        String latLong = lat + ", " + lng;
+        String latLong = lat + "," + lng;
         new VenueController().getVenuesData(latLong, context, new ICallBack<VenueResponse>() {
             @Override
             public void response(VenueResponse venueResponse) {

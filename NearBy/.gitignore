@@ -4,6 +4,7 @@ Thumbs.db
 # OSX files
 .DS_Store
 
+
 # built application files
 *.apk
 *.ap_
@@ -18,6 +19,7 @@ Thumbs.db
 bin/
 gen/
 build/
+.gradle/
   
 # Local configuration file (sdk path, etc)
 local.properties
@@ -25,6 +27,8 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+.bin
+.lock
   
 # Android Studio
 .idea
