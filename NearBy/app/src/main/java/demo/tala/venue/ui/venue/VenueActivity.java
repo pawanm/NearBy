@@ -45,6 +45,7 @@ public class VenueActivity extends AppCompatActivity {
             case LocationController.REQUEST_PERMISSIONS_REQUEST_CODE: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Logger.log("Permission Granted");
                     if (venueFragment != null) {
                         venueFragment.locationPermissionGranted();
                     }

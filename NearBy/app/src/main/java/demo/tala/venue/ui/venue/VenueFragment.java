@@ -50,7 +50,7 @@ public class VenueFragment extends BaseFragment {
         progressDialog = new ProgressDialog(context);
         venuesRecyclerAdapter = new VenueRecyclerAdapter(context);
         recyclerView.setAdapter(venuesRecyclerAdapter);
-        getVenueDetails(34.017156, -118.494513);
+        //getVenueDetails(34.017156, -118.494513);
         setClickListener(recyclerView);
         getCurrentLocationVenues();
         return view;
@@ -91,6 +91,7 @@ public class VenueFragment extends BaseFragment {
     }
 
     public void locationPermissionGranted() {
+        Logger.log("Re-fetching venues");
         getCurrentLocationVenues();
     }
 
