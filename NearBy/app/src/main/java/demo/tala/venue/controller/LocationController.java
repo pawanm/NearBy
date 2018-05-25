@@ -33,6 +33,8 @@ public class LocationController {
                 && ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Logger.log("Requesting Location Permission");
             requestPermissions();
+            //TODO: invoke location callback on  request permission success
+            return;
         }
 
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(activityContext, new OnCompleteListener<Location>() {
